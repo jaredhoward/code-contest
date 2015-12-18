@@ -1,0 +1,36 @@
+<table class="table table-striped">
+  <tr>
+    <th></th>
+    <th>
+      First Name
+    </th>
+    <th>
+      Last Name
+    </th>
+    <th>
+      Email
+    </th>
+    <th>
+      Role
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
+  <tr ng-repeat="user in users" ng-click="editUser($event)">
+    <td>{{$index+1}}. </td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.email}}</td>
+    <td>
+      <select id="role{{$index}}" class="form-control tight off" disabled ng-model="role" ng-init="role=user.role" ng-change="changeRole($index,user._id,role)">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </td>
+    <td>
+      <a ng-click="deleteUser(user)" class="btn btn-small btn-danger" confirm>Delete</a>
+      <a class="btn btn-small btn-primary" data-id="edit">Edit</a>
+    </td>
+  </tr>
+</table>

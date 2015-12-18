@@ -1,0 +1,36 @@
+<ul class="nav nav-tabs" ng-click="active($event)">
+  <li ng-repeat="language in languages">
+    <a ng-class='{active:$first}' ng-click="getVersions(language.name, languages)">{{language.name}}</a>
+  </li>
+  <li>
+    <a ng-click="showAddLanguage()" ng-hide="add == true" class="no-action">+</a>
+    <a ng-show="add == true"><input id="add-language" ng-model="newLanguage" ng-keydown="addLanguage($event,newLanguage)" ng-blur="looseFocus($event)"></a>
+  </li>
+</ul>
+
+<table class="table table-striped">
+  <th></th>
+  <th>
+    Version
+  </th>
+  <th>
+    Actions
+  </th>
+  <tr ng-repeat="item in activeLanguage.versions track by $index">
+    <td>{{$index+1}}. </td>
+    <td>{{item}}</td>
+    <td>
+      <a ng-click="deleteVersion(item)" class="btn btn-small btn-danger" confirm>Delete</a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>
+      <button class="pull-right btn btn-danger" ng-click="deleteLanguage(activeLanguage)" style="margin-left: 15px" confirm>Delete Language</button>
+      <button class="pull-right btn btn-primary" data-toggle="modal" data-target="#add-version">Add Version</button>
+    </td>
+  </tr>
+</table>
+
+<ng-include src="'/javascripts/app/admin/sections/modal-forms/add-version.html'"></ng-include>

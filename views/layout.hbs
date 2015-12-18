@@ -3,8 +3,33 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
   </head>
   <body>
-    {{{body}}}
+    <header>
+      <a id="logo" href="/"><img src="/images/raccoon.png"/><span>RakÜN</span></a>
+        <ul id="menu" class="pull-right">
+          {{#if firstName}}
+          <li><a href="/challenges">Challenges</a></li>
+          <li><a href="/profile">Profile</a></li>
+          {{#if admin}}
+          <li><a href="/admin">Admin</a></li>
+          {{/if}}
+          <li>
+            <a href="/logout">Log out</a>
+          </li>
+          {{/if}}
+        </ul>
+    </header>
+    <div id="content-wrapper" class="container">
+      {{{body}}}
+    </div>
+    <footer>
+      <div>
+        © Rakuten Über Nerds 2015
+      </div>
+    </footer>
   </body>
 </html>

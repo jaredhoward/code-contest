@@ -1,0 +1,24 @@
+<ul class="breadcrumb">
+  <li><a ng-href="/challenges">Home</a></li>
+  <li><a class="active">Admin</a></li>
+</ul>
+<div class="side-bar col-xs-12 col-sm-3">
+    <ul class="nav nav-pills nav-stacked" ng-click="active($event)">
+        <li class="menu-title">
+            Configure
+        </li>
+        <li>
+            <a class="active" ng-click="tabs='/javascripts/app/admin/sections/languages-tab.html';activeTab='Languages'">Languages</a>
+        </li>
+        <li>
+            <a ng-click="tabs='/javascripts/app/admin/sections/challenges-tab.html';activeTab='Challenges'">Challenges</a>
+        </li>
+        <li>
+            <a ng-click="tabs='/javascripts/app/admin/sections/users-tab.html';activeTab='Users'">Users</a>
+        </li>
+    </ul>
+</div>
+<div class="col-xs-12 col-sm-8" ng-init="tabs='/javascripts/app/admin/sections/languages-tab.html';activeTab='Languages'">
+    <h4 style="margin-bottom: 20px">{{activeTab}}</h4>
+    <div ng-include="tabs"></div>
+</div>

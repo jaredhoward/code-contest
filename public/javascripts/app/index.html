@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <title>RakUN</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' />
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/bower/angular/angular.min.js"></script>
+    <script src="/bower/angular-route/angular-route.min.js"></script>
+    <script src="/javascripts/app/app.js"></script>
+    <script src="/bower/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="/bower/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    
+    <!--Angular custom-->
+    <script src="/javascripts/app/services.js"></script>
+    <script src="/javascripts/app/directives.js"></script>
+    <script src="/javascripts/app/admin/admin.js"></script>
+    <script src="/javascripts/app/challenges/challenges.js"></script>
+    <script src="/javascripts/app/leaderboard/leaderboard.js"></script>
+    <script src="/javascripts/app/profile/profile.js"></script>
+  </head>
+  <body ng-app="app">
+    <header>
+      <a id="logo" href="/challenges"><img src="/images/raccoon.png"/><span>RakÜN</span></a>
+        <ul id="menu" class="pull-right">
+          <li><a ng-href="/leaderboard">Leaderboard</a></li>
+          <li><a ng-href="/challenges">Challenges</a></li>
+          <li><a ng-href="/profile">{{user.firstName + '\'s '}}Profile</a></li>
+          <li><a ng-href="/admin" ng-if="user.role=='admin'">Admin</a></li>
+          <li>
+            <a ng-click="logout()">Log out</a>
+          </li>
+        </ul>
+    </header>
+    <div id="content-wrapper" class="container" >
+      <div ng-view></div>
+    </div>
+    <footer>
+      <div>
+        © Rakuten Über Nerds 2016
+      </div>
+    </footer>
+  </body>
+</html>

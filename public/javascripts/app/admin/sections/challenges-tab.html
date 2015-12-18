@@ -1,0 +1,40 @@
+<table class="table table-striped">
+  <tr>
+    <th></th>
+    <th>
+      Name
+    </th>
+    <th>
+      Languages
+    </th>
+    <th>
+      Actions
+    </th>
+  </tr>
+  <tr ng-repeat="challenge in challenges">
+    <td>{{$index+1}}. </td>
+    <td><a ng-href="/challenges/{{challenge.slug}}">{{challenge.name}}</a></td>
+    <td>
+      <ul class="languages-icons">
+        <li ng-repeat="language in challenge.languages">
+          <img src="/images/{{(language.name).toLowerCase()}}-icon.png" width="20px"></img>
+        </li>
+      </ul>
+    </td>
+    <td>
+      <a ng-click="deleteChallenge(challenge.slug)" class="btn btn-small btn-danger" confirm>Delete</a>
+      <a ng-click="editChallenge(challenge.slug)" class="btn btn-small btn-primary">Edit</a>
+      <a data-toggle="modal" data-target="#admin-challenge" style="display:none"></a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <button class="pull-right btn btn-primary" data-toggle="modal" data-target="#admin-challenge">Add Challenge</button>
+    </td>
+  </tr>
+</table>
+
+<ng-include src="'/javascripts/app/admin/sections/modal-forms/admin-challenge.html'"></ng-include>

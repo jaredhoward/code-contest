@@ -1,0 +1,43 @@
+<script type="text/javascript" src="/javascripts/filesaver.min.js"></script>
+<ul class="breadcrumb">
+  <li><a ng-href="/challenges">Home</a></li>
+  <li><a class="active">Profile</a></li>
+</ul>
+<div class="side-bar col-xs-12 col-sm-3">
+  <ul class="nav nav-pills nav-stacked" ng-click="active($event)">
+    <li class="menu-title">
+      My submissions
+    </li>
+    <li ng-repeat="language in languages" ng-click="setLanguage(language)" ng-init="setLanguage(languages[0])">
+      <a ng-class='{active:$first}'>{{language.name}}</a>
+    </li>
+  </ul>
+</div>
+<div class="col-xs-12 col-sm-8">
+  <h4 style="margin-bottom: 20px">Results</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        Challenge Name
+      </th>
+      <th ng-repeat="version in currentLanguage.versions"> <!-- need versions from submition instead of a current language -->
+        Version {{version}}
+      </th>
+      <th>
+        File
+      </th>
+      <th>
+        Actions
+      </th>
+    </tr>
+    <tr ng-if="submition.language.name == currentLanguage.name" ng-repeat="submition in submitions track by $index">
+      <td><a ng-href="/challenges/{{submition.challenge.slug}}">{{submition.challenge.name}}</a></td>
+      <th ng-repeat="result in submition.results">
+        Version {{version}}
+      </th>
+      <td ng-if="submition.results.length == 0">2.3 sec</td>
+      <td><a ng-click="getFile(submition)">{{submition.file.originalname}}</a></td>
+      <td><a ng-click="deleteSubmition(submition._id)" class="btn btn-small btn-danger" confirm>Delete</a></td>
+    </tr>
+  </table>
+</div>

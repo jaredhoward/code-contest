@@ -1,2 +1,8 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1 style="margin-top: 40px !important">Login</h1>
+<form method="post" action="/users/login" class="col-xs-12 col-sm-4">
+    <input class="form-control" type="text" name="email" placeholder="email" required></input>
+    <input class="form-control" type="password" name="password" placeholder="password" required></input>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a href="/create-user">Register</a>
+    <span class="error" style="color:red; display: block; margin-top: 10px">{{error}}</span>
+</form>

@@ -1,0 +1,25 @@
+<div id="leaderboard">
+  <ul class="breadcrumb">
+    <li><a ng-href="/challenges">Home</a></li>
+    <li><a class="active">Leaderboard</a></li>
+  </ul>
+  <img id="leader" src="/images/rakun-leader.png" />
+  <h2>Leaderboard</h2>
+  <table id="challenges" class="table table-striped">
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Languages</th>
+    </tr>
+    <tr ng-repeat="challenge in challenges">
+      <td>{{$index+1}}. </td>
+      <td><a href="/leaderboard/challenge/{{challenge.slug}}">{{challenge.name}}</a></td>
+      <td>
+        <ul class="languages-icons">
+          <li ng-repeat="language in challenge.languages">
+            <img src="/images/{{(language.name).toLowerCase()}}-icon.png"></img>
+          </li>
+        </ul>
+      </td>
+  </table>
+</div>

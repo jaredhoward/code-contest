@@ -1,0 +1,33 @@
+<ul class="breadcrumb">
+  <li><a ng-href="/challenges">Home</a></li>
+  <li><a ng-href="/leaderboard">Leaderboard</a></li>
+  <li><a class="active">{{challenge.name}}</a></li>
+</ul>
+<h2>{{submitions[0].challenge.name}}</h2>
+<ul class="nav nav-tabs" ng-click="active($event)">
+  <li ng-repeat="language in challenge.languages" ng-init="setLanguage(challenge.languages[0].name)">
+    <a ng-class='{active:$first}' ng-click="setLanguage(language.name)">{{language.name}}</a>
+  </li>
+</ul>
+
+<table id="challenges" class="table table-striped">
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Avg. Result</th>
+    <th>Language</th>
+  </tr>
+  <tr ng-repeat="submition in submitions" ng-if="submition.language.name == currentLanguage">
+    <td get-index></td>
+    <td>{{submition.user.firstName}} {{submition.user.lastName}}</td>
+    <td>2.3 sec</td>
+    <td>
+      <ul class="languages-icons">
+        <li>
+          <img src="/images/{{(submition.language.name).toLowerCase()}}.png"></img>
+        </li>
+      </ul>
+    </td>
+</table>
+
+    

@@ -1,0 +1,23 @@
+<ul class="breadcrumb">
+  <li><a ng-href="/challenges">Home</a></li>
+  <li><a ng-href="/challenges">Challenges</a></li>
+  <li><a ng-href="/challenges/{{challenge.slug}}">{{challenge.name}}</a></li>
+  <li><a ng-href="/challenges/{{challenge.slug}}/languages">Languages</a></li>
+  <li><a class="active">Submit</a></li>
+</ul>
+
+<div ng-hide="success" ng-controller="UploadController" style="text-align: center">
+    <h4 class="col-xs-12">
+    <a class="btn btn-default submit-logo">
+    <img src="/images/{{(language.name).toLowerCase()}}-icon.png"></img></a>Please submit your code here:
+  </h4>
+  <div ngf-drop ngf-select ng-model="file" class="drop-box" ngf-max-size="2MB" ngf-drag-over-class="'dragover'" ngf-allow-dir="true" ngf-pattern="'text/*,application/zip'" >
+    <h4>Drop file here or click to upload</h4>
+    <p>Limited to 1 file under 2MB (Please archive your code to *.zip if it includes more than one file)</p>
+  </div>
+  <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+</div>
+
+<div id="thanks" class="well" ng-show="success">
+  Thank you for you submission.
+</div>
