@@ -22,9 +22,8 @@
       </ul>
     </td>
     <td>
-      <a ng-click="deleteChallenge(challenge.slug)" class="btn btn-small btn-danger" confirm>Delete</a>
-      <a ng-click="editChallenge(challenge.slug)" class="btn btn-small btn-primary">Edit</a>
-      <a data-toggle="modal" data-target="#admin-challenge" style="display:none"></a>
+      <a ng-click="deleteChallenge(challenge)" class="btn btn-small btn-danger" confirm>Delete</a>
+      <a ng-click="editChallenge(challenge)" class="btn btn-small btn-primary" data-toggle="modal" data-target="#update-challenge">Edit</a>
     </td>
   </tr>
   <tr>
@@ -32,9 +31,10 @@
     <td></td>
     <td></td>
     <td>
-      <button class="pull-right btn btn-primary" data-toggle="modal" data-target="#admin-challenge">Add Challenge</button>
+      <button class="pull-right btn btn-primary" data-toggle="modal" data-target="#add-challenge">Add Challenge</button>
     </td>
   </tr>
 </table>
 
-<ng-include src="'/javascripts/app/admin/sections/modal-forms/admin-challenge.html'"></ng-include>
+<ng-include src="'/javascripts/app/admin/sections/modal-forms/add-challenge.html'"></ng-include>
+<ng-include src="'/javascripts/app/admin/sections/modal-forms/update-challenge.html'"></ng-include>

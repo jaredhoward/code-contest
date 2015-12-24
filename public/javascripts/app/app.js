@@ -41,7 +41,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 }]);
 
 //TODO user's profile to edit info
-//TODO Leader board - problem with updating challenge (click on couple to see)
+//added challenge now cannot edit it
 //TODO clear out forms on submit (admin)
 //TODO what if there are morethan 4 languages (bootstrap col)
 //TODO unique user email check / password confirmation

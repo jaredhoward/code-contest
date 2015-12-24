@@ -3,16 +3,9 @@ app.controller('leaderboardController', function(
 });
 
 app.controller('leaderboardChallengeController', function(
-	$scope, $routeParams, $http, ActiveTab, Logout, GetUser) {
+	$scope, $routeParams, $http, ActiveTab, GetChallenge, Logout, GetUser) {
 		
-	$http({
-    method: 'GET',
-    url: '/api/get_challenge/' + $routeParams.challenge
-  }).then(function successCallback(res){
-    $scope.challenge = res.data;
-  }, function errorCallback(err){
-    console.log(err);
-  });
+	GetChallenge.get_challenge($routeParams.challenge);
   
   $http({
     method: 'GET',

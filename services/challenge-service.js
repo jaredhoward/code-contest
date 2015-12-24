@@ -26,16 +26,11 @@ exports.getChallenges = function(next) {
     });
 };
 
-exports.deleteChallenge = function(data,next) {
-  Challenge.remove({slug:data.challenge},function(err){
+exports.deleteChallenge = function(slug,next) {
+  Challenge.remove({slug:slug},function(err){
       if(err) {
         return next(err);
       }
       return next(null);
     });
-}
-exports.findChallenge = function(name,next) {
-  Challenge.findOne({name:name}, function(err, challenge){
-    next(err,challenge);
-  });
 };

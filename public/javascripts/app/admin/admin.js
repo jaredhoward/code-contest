@@ -1,5 +1,5 @@
 app.controller('adminController', function(
-	$scope, $http, $rootScope, GetChallenges, GetUsers, GetUser, GetLanguages, ActiveTab, Logout, RemoveAt) {
+	$scope, $http, $rootScope, GetChallenges, GetUsers, GetUser, GetLanguages, GetChallenge, ActiveTab, Logout, RemoveAt, ReplaceAt) {
 	  
 	  $scope.add = false;
 	  
@@ -120,16 +120,21 @@ app.controller('adminController', function(
         });
     };
     
-    $scope.addChallenge = function(challenge) {
+    function map_languages(challenge) {
       var langArray = [];
-      for(language in challenge.languages) {
-        for(var i=0; i<$rootScope.languages.length; i++) {
-          if($rootScope.languages[i].name == language) {
-            langArray.push($rootScope.languages[i]);
-          }
+
+      for(var i=0; i<$rootScope.languages.length; i++) {
+        if(challenge.languages[$rootScope.languages[i].name] == true) {
+          langArray.push($rootScope.languages[i]);
         }
       }
-      challenge.languages = langArray;
+
+      return langArray;
+    }
+    
+    $scope.addChallenge = function(challenge) {
+      
+      challenge.languages = map_languages(challenge);
      
       var data = {
         name: challenge.name,
@@ -149,11 +154,39 @@ app.controller('adminController', function(
         });
     };
     
-    $scope.deleteChallenge = function(challenge) {
+    $scope.editChallenge = function(challenge) {
+      GetChallenge.get_challenge(challenge.slug);
+    };
+    
+    $scope.check = function(language) {
+      for(var i=0;i<$rootScope.challenge.languages.length;i++) {
+        if ($rootScope.challenge.languages[i]._id == language._id) return true; 
+      }
+      return false;
+    };
+    
+    $scope.updateChallenge = function(challenge) {
+      
+      challenge.languages = map_languages(challenge);
+      
       var data = {
-        challenge: challenge
+        name: challenge.name,
+        description: challenge.description,
+        languages : challenge.languages
       };
-      $http.post('/api/delete_challenge/', angular.toJson(data))
+
+      $http.post('/api/update_challenge/' + challenge.slug, angular.toJson(data))
+        .success(function(challenge) {
+          document.querySelector('#close-update').click();
+          $scope.challenges.replaceAt(challenge);
+        })
+        .error(function(response) {
+          console.log(response);
+        });
+    };
+    
+    $scope.deleteChallenge = function(challenge) {
+      $http.post('/api/delete_challenge/'+challenge.slug)
         .success(function(response) {
           console.log(response);
           $scope.challenges.removeAt(challenge._id);

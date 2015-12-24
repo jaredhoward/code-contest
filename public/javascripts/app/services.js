@@ -112,7 +112,7 @@ app.factory('GetUserSubmitions', function(
 
   $http.get('/api/get_submitions/user',{})
   .then(function(res){
-    $rootScope.submitions = (res.data)
+    $rootScope.submitions = (res.data);
   }, function(err){
     console.log(err);
   });
@@ -123,16 +123,22 @@ app.factory('GetUserSubmitions', function(
 app.factory('GetChallenge', function( 
 	$rootScope, $http, $routeParams){
 
-  $http({
-    method: 'GET',
-    url: '/api/get_challenge/' + $routeParams.challenge
-  }).then(function successCallback(res){
-    $rootScope.challenge = res.data;
-  }, function errorCallback(err){
-    console.log(err);
-  });
+  return {
+    get_challenge : function(slug) {
+      $http({
+        method: 'GET',
+        url: '/api/get_challenge/' + slug
+      }).then(function successCallback(res){
+        $rootScope.challenge = res.data;
+        for(var i=0;i<$rootScope.challenge.languages.length;i++) {
+          $rootScope.challenge.languages[$rootScope.challenge.languages[i].name] = true;
+        }
+      }, function errorCallback(err){
+        console.log(err);
+      });
+    }
+  };
   
-  return true;
 });
 
 app.factory('ActiveTab', function($rootScope){
@@ -155,7 +161,21 @@ app.factory('RemoveAt', function(){
       }
     }
     return false;
-  }
+  };
+  
+  return true;
+});
+
+app.factory('ReplaceAt', function(){
+  Array.prototype.replaceAt = function(challenge) {
+    for (var item in this) {
+      if (this[item]._id == challenge._id) {
+        this[item] = challenge;
+        return true;
+      }
+    }
+    return false;
+  };
   
   return true;
 });

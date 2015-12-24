@@ -196,13 +196,35 @@ router.post('/api/add_challenge', function(req, res) {
    });
 });
 
-router.post('/api/delete_challenge', function(req, res) {
+router.post('/api/update_challenge/:slug', function(req, res) {
+  Challenge.findOne({ slug: req.params.slug }, function (err, doc){
+    message='Success';
+    if(err){
+      message = 'Did not find this challenge';
+    } else {
+      doc.name = req.body.name;
+      doc.slug = get_slug(req.body.name);
+      doc.description = req.body.description;
+      doc.languages = req.body.languages;
+      doc.save(function(err){
+        if(!err) {
+          return res.send(doc);
+        } else {
+          message = "Failed to update challenge"
+        }
+        return res.send(message);
+      });
+    }
+  });
+});
+
+router.post('/api/delete_challenge/:slug', function(req, res) {
    var challengeService = require('../services/challenge-service.js');
-   challengeService.deleteChallenge(req.body, function(err){
+   challengeService.deleteChallenge(req.params.slug, function(err){
      if(err) {
        var message = 'Failed to delete a challenge';
      } else {
-       var message = 'Succes';
+       var message = 'Success';
      }
      return res.send(message);
    });
