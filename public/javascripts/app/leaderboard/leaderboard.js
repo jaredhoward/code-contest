@@ -16,6 +16,10 @@ app.controller('leaderboardChallengeController', function(
     console.log(err);
   });
   
+      $scope.appendClass = function(obj) {
+      console.log(obj)
+    }
+  
 	$scope.setLanguage = function(lang) {
 		$scope.currentLanguage = lang;
 	};

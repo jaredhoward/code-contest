@@ -3,7 +3,9 @@
     <li><a ng-href="/challenges">Home</a></li>
     <li><a class="active">Leaderboard</a></li>
   </ul>
-  <img id="leader" src="/images/rakun-leader.png" />
+  <div style="opacity:.8">
+    <img id="leader" src="/images/rakun-leader.png" fade-in/>
+  </div>
   <h2>Leaderboard</h2>
   <table id="challenges" class="table table-striped">
     <tr>
@@ -17,7 +19,7 @@
       <td>
         <ul class="languages-icons">
           <li ng-repeat="language in challenge.languages">
-            <img src="/images/{{(language.name).toLowerCase()}}-icon.png"></img>
+            <img src="/images/{{(language.name).toLowerCase()}}-icon.png" fade-in></img>
           </li>
         </ul>
       </td>

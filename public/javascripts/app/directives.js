@@ -9,6 +9,15 @@ app.directive('getIndex', function(){
 	}
 });
 
+app.directive('fadeIn', function ($compile) {
+    return function (scope, element, attrs) {
+    	element[0].style.opacity= 0;
+    	setTimeout(function() {
+    		element[0].style.opacity= 1;
+    	}, 100);
+    };
+});
+
 app.directive('confirm', function(){
 	return {
 		priority: 1,

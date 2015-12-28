@@ -5,10 +5,10 @@
 </ul>
 <div ng-show="challenge">
   <h1>{{challenge.name}}</h1>
-  <pre>{{challenge.description}}</pre>
+  <pre fade-in>{{challenge.description}}</pre>
   <hr style="margin:25px 0"/>
   <a class="btn btn-primary pull-right" ng-href="/challenges/{{challenge.slug}}/languages" style="margin-right: 15px">Submit code</a>
 </div>
-<div class="well" ng-hide="challenge">
+<div class="well" ng-hide="challenge" fade-in>
   Oops! Looks like think this challenge is no longer available.
 </div>

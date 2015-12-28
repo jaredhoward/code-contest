@@ -9,7 +9,7 @@
     <ul id="languages" class="row">
         <li class="col-xs-12 col-md-6 col-lg-{{col}}" ng-repeat="language in challenge.languages">
             <a class="btn btn-default" href="/challenges/{{challenge.slug}}/languages/{{language.slug}}/submit">
-                <img src="/images/{{(language.name).toLowerCase()}}.png"></img>
+                <img src="/images/{{(language.name).toLowerCase()}}.png" fade-in></img>
             </a>
         </li>
     </ul>

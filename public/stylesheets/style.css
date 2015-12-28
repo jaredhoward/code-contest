@@ -110,6 +110,13 @@ a.active {
   border-radius: 0 !important;
   background: #dddddd !important;
 }
+
+img,pre,div {
+  transition: opacity .25s ease-in-out !important;
+  -moz-transition: opacity .25s ease-in-out !important;
+  -webkit-transition: opacity .25s ease-in-out !important;
+}
+
 .breadcrumb:before {
   position: absolute;
   content: '';
@@ -214,7 +221,6 @@ a.active {
   height: 85px;
   top: 54px;
   left: 2%;
-  opacity: .8;
 }
 
 .submit-logo {
