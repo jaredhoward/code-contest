@@ -11,6 +11,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/create', function(req, res, next) {
+  userService.findUser((req.body.email).toLowerCase(),function(err,res){
+    console.log(res);
+  });
   userService.addUser(req.body, function(err) {
     if (err) {
       console.log(err);

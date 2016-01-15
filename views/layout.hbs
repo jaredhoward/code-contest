@@ -9,27 +9,19 @@
     <script src="/javascripts/bootstrap.min.js"></script>
   </head>
   <body>
-    <header>
-      <a id="logo" href="/"><img src="/images/raccoon.png"/><span>RakÜN</span></a>
-        <ul id="menu" class="pull-right">
-          {{#if firstName}}
-          <li><a href="/challenges">Challenges</a></li>
-          <li><a href="/profile">Profile</a></li>
-          {{#if admin}}
-          <li><a href="/admin">Admin</a></li>
-          {{/if}}
-          <li>
-            <a href="/logout">Log out</a>
-          </li>
-          {{/if}}
-        </ul>
-    </header>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a id="logo" class="navbar-brand" href="/"><img src="/images/raccoon.png"/><span>RakÜN</span></a>
+        </div>
+      </div>
+    </nav>
     <div id="content-wrapper" class="container">
       {{{body}}}
     </div>
     <footer>
       <div>
-        © Rakuten Über Nerds 2015
+        © Rakuten Über Nerds {{year}}
       </div>
     </footer>
   </body>

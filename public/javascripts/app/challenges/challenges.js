@@ -8,7 +8,7 @@ app.controller('challengeController', function(
     .success(function(response) {
       $scope.challenge = response;
       if($scope.challenge)
-        $scope.col = 12 / $scope.challenge.languages.length;
+        $scope.col = $scope.challenge.languages.length > 4 ? 4 : 12 / $scope.challenge.languages.length;
     })
     .error(function(response) {
       console.log(response);

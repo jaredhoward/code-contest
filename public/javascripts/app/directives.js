@@ -18,6 +18,14 @@ app.directive('fadeIn', function ($compile) {
     };
 });
 
+app.directive('currentYear', function ($compile) {
+    return function (scope, element, attrs) {
+    	var today = new Date();
+    	var year = today.getFullYear();
+    	element[0].innerHTML = element[0].innerHTML + ' ' + year;
+    };
+});
+
 app.directive('confirm', function(){
 	return {
 		priority: 1,

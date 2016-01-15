@@ -24,24 +24,39 @@
     <script src="/javascripts/app/profile/profile.js"></script>
   </head>
   <body ng-app="app">
-    <header>
-      <a id="logo" href="/challenges"><img src="/images/raccoon.png"/><span>RakÜN</span></a>
-        <ul id="menu" class="pull-right">
-          <li><a ng-href="/leaderboard">Leaderboard</a></li>
-          <li><a ng-href="/challenges">Challenges</a></li>
-          <li><a ng-href="/profile">{{user.firstName + '\'s '}}Profile</a></li>
-          <li><a ng-href="/admin" ng-if="user.role=='admin'">Admin</a></li>
-          <li>
-            <a ng-click="logout()">Log out</a>
-          </li>
-        </ul>
-    </header>
+ 
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNav">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span> 
+            </button>
+            <a id="logo" href="/challenges" class="navbar-brand"><img src="/images/raccoon.png"/><span>RakÜN</span></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNav">
+            <ul id="menu" class="pull-right nav navbar-nav">
+              <li><a ng-href="/leaderboard">Leaderboard</a></li>
+              <li><a ng-href="/challenges">Challenges</a></li>
+              <li><a ng-href="/profile">{{user.firstName + '\'s '}}Profile</a></li>
+              <li><a ng-href="/admin" ng-if="user.role=='admin'">Admin</a></li>
+              <li>
+                <a ng-click="logout()">Log out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
     <div id="content-wrapper" class="container" >
-      <div ng-view></div>
+      <div ng-view>
+        <script src="/javascripts/active-menu-item.js"></script>
+      </div>
     </div>
     <footer>
-      <div>
-        © Rakuten Über Nerds 2016
+      <div current-year>
+        © Rakuten Über Nerds
       </div>
     </footer>
   </body>

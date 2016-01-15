@@ -5,7 +5,7 @@ html {
 body {
   padding: 0;
   margin: 0 0 50px !important;
-
+  overflow-x: hidden;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background: #f5f6f5 !important;
 }
@@ -87,6 +87,7 @@ header a:hover span {
 #logo {
   display: inline-block;
   position: relative;
+  margin-left: 5%;
 }
 
 #logo img {
@@ -103,6 +104,10 @@ header a:hover span {
 
 a.active {
   background: #eeeeee;
+}
+
+.navbar-nav .active a {
+  background: none !important;
 }
 
 .breadcrumb {
@@ -153,8 +158,13 @@ img,pre,div {
   color: #777777;
 }
 #menu {
-  margin: 0;
+  margin: 7px 0 0 0;
   display: block;
+}
+
+.navbar {
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
 }
 
 #languages {

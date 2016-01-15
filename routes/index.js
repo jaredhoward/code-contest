@@ -10,6 +10,9 @@ var restrict = require('../auth/restrict.js');
 var multer  = require('multer')
 var upload = multer();
 
+var today = new Date();
+var year = today.getFullYear();
+
 function get_slug(str) {
   var result = (str.replace(/(\!|\?|\*|\:|;|&|\^|%|$|#|@|\+)/g,'')).toLowerCase();
   result = result.trim(); // remove trailing spaces
@@ -30,7 +33,8 @@ router.get('/', function(req, res, next) {
   }
   var vm = {
     title: 'Login',
-    error: req.flash('error')
+    error: req.flash('error'),
+    year: year
   };
   res.render('index', vm);
 });
@@ -38,7 +42,7 @@ router.get('/', function(req, res, next) {
 /* Users and login  */
 
 router.get('/create-user', function(req, res, next) {
-  res.render('users/create', {title: 'Create an account'});
+  res.render('users/create', {title: 'Create an account',year: year});
 });
 
 router.get('/logout', function(req, res, next){
@@ -52,18 +56,40 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/create-user', function(req, res, next) {
-  userService.addUser(req.body, function(err){
-    if(err) {
+  userService.findUser((req.body.email).toLowerCase(),function(err,user){
+    if(user || err) {
       var vm = {
-        title: 'Create an account',
+        title: 'Create account',
         input: req.body,
-        error: 'Oops! Something went wrong. Please try again later. ' + err
+        error: 'Oops! User with this e-mail already exists',
+        year: year
       };
-      return res.render('/create-user', vm);
+    } else {
+      if(req.body.password == req.body.password2) {
+        userService.addUser(req.body, function(err){
+          if(err) {
+            var vm = {
+              title: 'Create an account',
+              input: req.body,
+              error: 'Oops! Something went wrong. Please try again later. ' + err,
+              year: year
+            };
+          } else {
+            req.logIn(req.body, function(err){
+               res.redirect('/challenges');
+            });
+          }
+        });
+      } else {
+        var vm = {
+          title: 'Create account',
+          input: req.body,
+          error: 'Oops! Your passwords must match',
+          year: year
+        };
+      }
     }
-    req.login(req.body, function(err){
-       res.redirect('/challenges');
-    });
+    return res.render('users/create', vm);
   });
 });
 
